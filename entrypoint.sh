@@ -9,4 +9,4 @@ export PGPORT="$(get_options_value db_port)"
 export PGUSER="$(get_options_value db_user)"
 export PGPASSWORD="$(get_options_value db_password)"
 
-exec /bin/ash
+exec /usr/bin/psql
