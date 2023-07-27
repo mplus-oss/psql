@@ -6,9 +6,11 @@ LABEL org.opencontainers.image.vendor="M+ Software"
 LABEL org.opencontainers.image.title="Psql"
 LABEL org.opencontainers.image.description="PostgreSQL client for Odoo stack"
 ENV VISUAL=vim EDITOR=vim PAGER=less
+COPY ./entrypoint.sh /entrypoint.sh
 RUN set -ex; \
     adduser -u 1000 psql -S; \
+    chmod +x /entrypoint.sh; \
     apk update; \
     apk add postgresql${PSQL_VERSION}-client pspg vim --no-cache
 USER psql
-ENTRYPOINT ["psql"]
+ENTRYPOINT ["/entrypoint.sh"]
